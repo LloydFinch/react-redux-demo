@@ -22471,14 +22471,18 @@ function getPubKey(username, password, dispatch) {
 }
 
 //请求登陆
+//跨域问题:mode: 'no-cors', credentials: 'include',
 function loginByPut(username, password, dispatch) {
     var url = _API2.default.LOGIN_URL;
     var jsonParams = JSON.stringify({ 'Uid': username, 'Password': password });
     fetch(url, {
-        method: 'POST', body: jsonParams
+        method: 'POST',
+        body: jsonParams
     }).then(function (response) {
+        console.log(response);
         return response.json();
     }).then(function (json) {
+        console.log(JSON.stringify(json));
         dispatch(loaded({ username: username, message: JSON.stringify(json) }));
     }).catch(function (error) {
         dispatch(loaded({ message: 'login failure' }));
@@ -22645,7 +22649,8 @@ var LoginRender = function (_Component) {
                     null,
                     _react2.default.createElement("input", { id: "username", type: "input", ref: "username", placeholder: "please input username" }),
                     _react2.default.createElement("br", null),
-                    _react2.default.createElement("input", { id: "password", type: "input", ref: "password", placeholder: "please input password" }),
+                    _react2.default.createElement("input", { style: styles.txt, id: "password", type: "password", ref: "password",
+                        placeholder: "please input password" }),
                     _react2.default.createElement("br", null)
                 ),
                 _react2.default.createElement("br", null),
@@ -22678,6 +22683,11 @@ var LoginRender = function (_Component) {
 }(_react.Component);
 
 exports.default = LoginRender;
+
+var txt = {
+    margin: 20
+};
+var styles = { txt: txt };
 
 },{"react":190}],206:[function(require,module,exports){
 'use strict';

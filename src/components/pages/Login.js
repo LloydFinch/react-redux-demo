@@ -1,7 +1,7 @@
 /**
  * Created by LloydFinch on 09/11/2016.
  */
-import React, {Component} from 'react';
+import React, {Component, StyleSheet} from 'react';
 export default class LoginRender extends Component {
     constructor(props) {
         super(props);
@@ -19,7 +19,8 @@ export default class LoginRender extends Component {
         return (<div>
             <form>
                 <input id="username" type="input" ref="username" placeholder="please input username"/><br/>
-                <input id="password" type="input" ref="password" placeholder="please input password"/><br/>
+                <input style={styles.txt} id="password" type="password" ref="password"
+                       placeholder="please input password"/><br/>
             </form>
             <br/>
 
@@ -35,3 +36,7 @@ export default class LoginRender extends Component {
         </div>);
     }
 }
+const txt = {
+    margin: 20,
+};
+const styles = {txt};

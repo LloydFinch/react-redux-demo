@@ -44,12 +44,18 @@ function getPubKey(username, password, dispatch) {
 }
 
 //请求登陆
+//跨域问题:mode: 'no-cors', credentials: 'include',
 function loginByPut(username, password, dispatch) {
     let url = API.LOGIN_URL;
     let jsonParams = JSON.stringify({'Uid': username, 'Password': password});
     fetch(url, {
-        method: 'POST', body: jsonParams
-    }).then((response)=>response.json()).then((json)=> {
+        method: 'POST',
+        body: jsonParams
+    }).then((response)=> {
+        console.log(response);
+        return response.json();
+    }).then((json)=> {
+        console.log(JSON.stringify(json));
         dispatch(loaded({username: username, message: JSON.stringify(json)}));
     }).catch((error)=> {
         dispatch(loaded({message: 'login failure'}));
